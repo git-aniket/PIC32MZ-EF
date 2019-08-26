@@ -7,9 +7,6 @@
   @File Name
     filename.h
 
-  @Summary
-    Brief description of the file.
-
   @Description
     Header  file containing the function prototypes for the generic functions used in the main program 
  */

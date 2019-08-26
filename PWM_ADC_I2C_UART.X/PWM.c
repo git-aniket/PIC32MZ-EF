@@ -38,20 +38,10 @@ void PWM_init()
      * PortE8,PortF2   
      */
     
-    
-    //Change default division factor for PBCLK which acts as a reference for the 
-    //timers to 1, by default it is 2;
     //check https://microchipdeveloper.com/32bit:mz-osc
     //and  Section 42. Oscillators with Enhanced PLL page13 of microchip reference manual 
     
-    
-    SYSKEY = 0xAA996655; // Unlocking sequence
-    SYSKEY = 0x556699AA;
-    PB3DIVbits.PBDIV = 0; // Divide by 1
-    PB3DIVbits.ON = 1; // PB3DIV enable
-    SYSKEY = 0x33333333; // Locking sequence
-    
-    
+       
     //convert pin8 of port E to a digitalPIN
     //this needs to be done as the development board has only a single pin for PWM
     ANSELEbits.ANSE8=0;
@@ -66,7 +56,7 @@ void PWM_init()
     OC1CONbits.ON=0; //disable output compare1
     OC2CONbits.ON=0; //disable output compare2
     T2CONbits.ON=0; //disable timer2
-    
+    TMR2=0; //Initialize timer 2 to 0
     //setup Output Compare1 to be used for generating PWM1
     OC1CONbits.OC32=0;// set compare mode to 16 bit timer source(in this case timer 2)
     OC1CONbits.OCTSEL=0; //select timer 2(X) as the comparison reference timer.
@@ -80,7 +70,7 @@ void PWM_init()
     OC2R=100;// set initial duty cycle of signal as 0
     
     //setup timer2 for output compare
-    T2CONbits.TCKPS0=0; T2CONbits.TCKPS1=0;T2CONbits.TCKPS2=0;//set timer1 pre-scaler to none
+    T2CONbits.TCKPS=0b000;//set timer2 pre-scaler to none
     PR2=4095; //setup  period register for overflow
     
     OC1CONbits.ON=1; //enable output compare
