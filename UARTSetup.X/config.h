@@ -1,3 +1,35 @@
+/* ************************************************************************** */
+/** Configuration file for the PIC32
+ * Authors: Aniket Mazumder
+ *          
+
+  @Company
+ University of Groningen
+
+  @File Name
+    config.h
+
+  @Summary
+ This file sets all configuration bits for the proper functioning of the PIC32 Microcontroller
+
+  @Description
+ This file should be included at the beginning above all other header files
+ * set the pragma 
+ * #pragma config ICESEL = ICS_PGx2        // ICE/ICD Comm Channel Select (Communicate on PGEC1/PGED1)
+  to allow for debugging using the onboard debugger*/
+
+
+/* ************************************************************************** */
+
+#ifndef _CONFIG_H    /* Guard against multiple inclusion */
+#define _CONFIG_H
+
+
+//////New Configuration
+
+
+// DEVCFG3
+// USERID = No Setting
 #pragma config FMIIEN = ON              // Ethernet RMII/MII Enable (MII Enabled)
 #pragma config FETHIO = ON              // Ethernet I/O Pin Select (Default Ethernet I/O)
 #pragma config PGL1WAY = OFF            // Permission Group Lock One Way Configuration (Allow multiple reconfigurations)
@@ -32,7 +64,7 @@
 // DEVCFG0
 #pragma config DEBUG = OFF              // Background Debugger Enable (Debugger is disabled)
 #pragma config JTAGEN = OFF             // JTAG Enable (JTAG Disabled)
-#pragma config ICESEL = ICS_PGx1        // ICE/ICD Comm Channel Select (Communicate on PGEC1/PGED1)
+#pragma config ICESEL = ICS_PGx2        // ICE/ICD Comm Channel Select (Communicate on PGEC1/PGED1)
 #pragma config TRCEN = OFF              // Trace Enable (Trace features in the CPU are disabled)
 #pragma config BOOTISA = MIPS32         // Boot ISA Selection (Boot code and Exception code is MIPS32)
 #pragma config FECCCON = OFF_UNLOCKED   // Dynamic Flash ECC Configuration (ECC and Dynamic ECC are disabled (ECCCON bits are writable))
@@ -45,3 +77,12 @@
 #pragma config POSCBOOST = OFF           // Primary Oscillator Boost Kick Start Enable bit (Boost the kick start of the oscillator)
 #pragma config EJTAGBEN = NORMAL        // EJTAG Boot (Normal EJTAG functionality)
 #pragma config CP = OFF                 // Code Protect (Protection Disabled)
+
+
+
+
+#endif /* _CONFIG_H */
+
+/* *****************************************************************************
+ End of File
+ */

@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "PIC32",
+            "includePath": [
+                "${workspaceFolder}/", 
+                "C:\\Users\\Aniket Mazumder\\.mchp_packs\\Microchip\\PIC32MZ-EF_DFP\\1.2.51\\include/"          
+                
+                
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.17763.0",
+            "compilerPath": "C:/Program Files (x86)/Microchip/xc32/v2.20/bin/xc32-gcc.exe",
+            "cStandard": "c89",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x86"
+        }
+    ],
+    "version": 4
+}
