@@ -29,8 +29,10 @@ University of Groningen
 #define PWM_FREQ_20 624                 //Value of Period register for 20KHz PWM
 #define PWM_FREQ_10 1249                //Value of Period register for 10KHz PWM
 
-#define CURRENT_CONTOL_FREQ 3124        //Value of Period register for 2000Hz speed of current control
-#define POSITION_CONTROL_FREQ 31249     //Value of Period register for 200Hz speed of positon control
+#define CURRENT_CONTOL_FREQ 3124        //Value of Period register for 2000Hz speed of current control, 50MHz and Prescaler of 8
+#define POSITION_CONTROL_FREQ 31249     //Value of Period register for 200Hz speed of positon control 50MHz and Prescaler of 8
+#define UART_DATA_FREQUENCY_100 15624 //Value of Period Register for 100 Hz frequency for, 50MHz clock and prescaler of 32 
+
 
 /*******************************************************************************/
 #define onn 0b1
