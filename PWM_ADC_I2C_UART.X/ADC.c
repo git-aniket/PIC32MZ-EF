@@ -1,46 +1,56 @@
-/* ************************************************************************** */
-/** Descriptive File Name
- 
-  @Author
- Aniket Mazumder
- 
-  @Company
- Universiy of Groningen
+/** ADC.c
+
+@Author
+Aniket Mazumder
+Department of Robotics
+a.mazumder@rug.nl
+March, 2020
+  
+@Company
+University of Groningen
 
   @File Name
-    ADC.h
+ADC.c
 
-  @Summary
-    source file to setup ADC's of PIC 32MZ.
-  
-    
- */
-/* ************************************************************************** */
-#include <xc.h>
-/** This function sets up Class 1 Input ADC for ADC modules 2,3,4.
- The outputs are available at PINS RB2,RB3 and RPB4 of the Curiosity 
+@Summary
+ This function sets up Class 1 Input ADC for ADC modules 2,3,4.
+ The outputs are available at pins RB2,RB3 and RPB4 of the Curiosity 
  development platform respectively.
  
  * The conversion is triggered from Software hence no extra peripherals 
  * have been used for the conversion trigger.
  * Default Voltage references have been selected(Vdd and Vss)
- * No interrupts have been used 
- **/
+ * No timers or interrupts have been used  
+
+@Description
+    This file sets up the ADC's for conversion of analog sensor data .
+ */
+
+
+#include<xc.h>
+#include "header.h"
+#include <proc/p32mz2048efm100.h>
 
 
 void ADC_init()
 {
-//Configure pins 2,3,and 4 of port B( AN2,AN3,AN4) as analog pins
+    
+/* Function to initialize ADC for PIC32 MZ
+ */    
+    asm volatile("di"); // Disable all interrupts. Don't enable global interrupts before all peripherals are configured.
+
+    
+/*Configure pins 2,3,and 4 of port B( AN2,AN3,AN4) as analog pins*/
     ANSELBbits.ANSB2=1;
     ANSELBbits.ANSB3=1;
     ANSELBbits.ANSB4=1;
 
-//Configure pins 2,3,and 4 of port B as input pins
+/*Configure pins 2,3,and 4 of port B as input pins*/
     TRISBbits.TRISB2=1;
     TRISBbits.TRISB3=1;
     TRISBbits.TRISB4=1;
 
-// initialize ADC calibration setting. Check section 34 Special features.
+/* initialize ADC calibration setting. Check section 34 Special features.*/
     ADC0CFG = DEVADC0;
     ADC1CFG = DEVADC1;
     ADC2CFG = DEVADC2;
@@ -48,14 +58,14 @@ void ADC_init()
     ADC4CFG = DEVADC4;
     ADC7CFG = DEVADC7;
   
-//Configure ADCCON1 
+/*Configure ADCCON1*/ 
     ADCCON1 = 0; // No ADCCON1 features are enabled including: Stop-in-Idle, turbo,
 // CVD mode, Fractional mode and scan trigger source.
     //Configure ADCCON2
     ADCCON2 = 0; // Since, we are using only the Class 1 inputs, no setting is
 // required for ADCDIV
 
-    //Initialize warm up time register 
+//Initialize warm up time register 
     ADCANCON = 0;
     ADCANCONbits.WKUPCLKCNT = 5; // Wakeup exponent = 32 * TADx
 
@@ -90,6 +100,7 @@ void ADC_init()
     ADCIMCON1bits.DIFF3 = 0; // Single ended mode
     ADCIMCON1bits.SIGN4 = 0; // unsigned data format
     ADCIMCON1bits.DIFF4 = 0; // Single ended mode
+
 //Configure ADCGIRQENx
     ADCGIRQEN1 = 0; // No interrupts are used
     ADCGIRQEN2 = 0;
@@ -147,13 +158,10 @@ void ADC_init()
     ADCCON3bits.DIGEN3 = 1; // Enable ADC3
     ADCCON3bits.DIGEN4 = 1; // Enable ADC4
  
+    //asm volatile("ei"); // Enable Global Interrupts once all peripherals are configured
+
     
 }
-
-     
-     /*This function triggers the ADC conversion and returns the result in an array 
- containing the values of the ADC conversion */
- 
 
 
 
