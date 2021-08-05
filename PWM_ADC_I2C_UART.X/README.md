@@ -1,5 +1,5 @@
 # PIC32
-Use this template to start working on PIC32 projects
+Use this template to start working on PIC32MZ2048EFM100 projects
 This project configures:
 1) UART- UART1 using a circular buffer using timerISR to write data
 2) ADC- AN2, AN3, AN4 sotware trigerred
