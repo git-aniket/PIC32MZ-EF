@@ -1,9 +1,9 @@
-l# PIC32MZ-EF
-Contains all work done on the PIC32 microcontroller viz, ADC, PWM, I2C, UART. No Harmony or PLIB has been used. 
-Use these files as a starting point to any project. 
+# PIC32MZ-EF
+Contains peripheral initialization for PIC32 microcontroller viz, ADC, PWM, I2C, UART. 
+No Harmony or PLIB has been used. 
+Use this as a starting point to any project. 
 
-Donot forget to include the InitialSetup.c file in all 
-projects.
+Include the initialSetup.c file in all projects to configure the uC at startup.
 
 IDE - MPLABX v 5.20. 
  
